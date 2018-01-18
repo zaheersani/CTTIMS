@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTTIManagementSystem", "CTTIManagementSystem\CTTIManagementSystem.csproj", "{01A27389-7C68-4758-96CC-ACD4FDC4F1E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTTIMS_Final", "CTTIMS_Final\CTTIMS_Final.csproj", "{1497C9F7-C583-4FCE-920B-5C7738840468}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01A27389-7C68-4758-96CC-ACD4FDC4F1E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A27389-7C68-4758-96CC-ACD4FDC4F1E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A27389-7C68-4758-96CC-ACD4FDC4F1E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A27389-7C68-4758-96CC-ACD4FDC4F1E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1497C9F7-C583-4FCE-920B-5C7738840468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1497C9F7-C583-4FCE-920B-5C7738840468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1497C9F7-C583-4FCE-920B-5C7738840468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1497C9F7-C583-4FCE-920B-5C7738840468}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

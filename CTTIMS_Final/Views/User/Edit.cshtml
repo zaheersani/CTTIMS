@@ -1,0 +1,80 @@
+﻿@model DBFirstSession.Models.User
+
+@{
+    ViewBag.Title = "Change Password";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @id = "ccSelectForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @if (ViewBag.Success != null)
+        {
+            <div class=" alert alert-success">
+                @ViewBag.Success
+                @Html.ValidationSummary(true)
+            </div>
+        }
+        else if (ViewBag.Error != null)
+        {
+            <div class=" alert alert-danger">
+                @ViewBag.Error
+                @Html.ValidationSummary(true)
+            </div>
+        }
+        
+        @Html.HiddenFor(model => model.UID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.UserName)
+                @Html.DisplayFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Current Password</label>
+            @*Current @Html.LabelFor(model => model.UPassword, new { @class = "control-label col-md-2", @value = "Current Password"})*@
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.UPassword)
+                @Html.ValidationMessageFor(model => model.UPassword)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RePassword, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.RePassword)
+                @Html.ValidationMessageFor(model => model.RePassword)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RePassword2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.RePassword2)
+                @Html.ValidationMessageFor(model => model.RePassword2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

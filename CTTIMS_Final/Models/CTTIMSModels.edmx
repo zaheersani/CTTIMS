@@ -1,0 +1,1439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CTTI_ICT_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assessment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uID" Type="int" />
+          <Property Name="enrollmentID" Type="int" />
+          <Property Name="A1_Max" Type="int" />
+          <Property Name="A1_Obt" Type="float" />
+          <Property Name="A2_Max" Type="int" />
+          <Property Name="A2_Obt" Type="float" />
+          <Property Name="A3_Max" Type="int" />
+          <Property Name="A3_Obt" Type="float" />
+          <Property Name="A4_Max" Type="int" />
+          <Property Name="A4_Obt" Type="float" />
+          <Property Name="A5_Max" Type="int" />
+          <Property Name="A5_Obt" Type="float" />
+          <Property Name="Q1_Max" Type="int" />
+          <Property Name="Q1_Obt" Type="float" />
+          <Property Name="Q2_Max" Type="int" />
+          <Property Name="Q2_Obt" Type="float" />
+          <Property Name="Q3_Max" Type="int" />
+          <Property Name="Q3_Obt" Type="float" />
+          <Property Name="Mid_Max" Type="int" />
+          <Property Name="Mid_Obt" Type="float" />
+          <Property Name="SendUp_Max" Type="int" />
+          <Property Name="SendUp_Obt" Type="float" />
+          <Property Name="Final_Max" Type="int" />
+          <Property Name="Final_Obt" Type="float" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Attendence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enrollmentID" Type="int" />
+          <Property Name="uID" Type="int" />
+          <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="FromTime" Type="datetime" />
+          <Property Name="ToTime" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="TopicsCovered" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDt" Type="datetime" />
+          <Property Name="EndDt" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="uID" Type="int" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreaditHours" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="uID" Type="int" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="uID" Type="int" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectionID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="BatchID" Type="int" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="EnrollmentDate" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="uID" Type="int" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uID" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="15" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptID" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="DeptPosition" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PresentAddress" Type="nvarchar(max)" />
+          <Property Name="PermanentAddress" Type="nvarchar(max)" />
+          <Property Name="PresentCity" Type="nvarchar(max)" />
+          <Property Name="PermanentCity" Type="nvarchar(max)" />
+          <Property Name="ExperienceYear" Type="int" />
+          <Property Name="ExperienceMonth" Type="int" />
+          <Property Name="JoiningDate" Type="datetime" />
+          <Property Name="ResignationDate" Type="datetime" />
+          <Property Name="Photo" Type="image" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="InstructorCourses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sectionID" Type="int" Nullable="false" />
+          <Property Name="instructorID" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="uID" Type="int" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="uID" Type="int" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uID" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="15" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="TemporaryAddress" Type="nvarchar(max)" />
+          <Property Name="TemporaryCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="PermanentAddress" Type="nvarchar(max)" />
+          <Property Name="PermanentCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="Photo" Type="image" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="LastAccessedOn" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Assessment_Enrollment">
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="0..1" />
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enrollment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="enrollmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendence_Enrollment">
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="0..1" />
+          <End Role="Attendence" Type="Self.Attendence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enrollment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendence">
+              <PropertyRef Name="enrollmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendence_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Attendence" Type="Self.Attendence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendence">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendence_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Attendence" Type="Self.Attendence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Attendence">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Batch_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Batch">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_Batch">
+          <End Role="Batch" Type="Self.Batch" Multiplicity="0..1" />
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="DeptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorCourses_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstructorCourses">
+              <PropertyRef Name="instructorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorCourses_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstructorCourses">
+              <PropertyRef Name="sectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorCourses_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="InstructorCourses">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCourses_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CTTI_ICT_DBModelStoreContainer">
+          <EntitySet Name="Assessment" EntityType="Self.Assessment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attendence" EntityType="Self.Attendence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstructorCourses" EntityType="Self.InstructorCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Assessment_Enrollment" Association="Self.FK_Assessment_Enrollment">
+            <End Role="Enrollment" EntitySet="Enrollment" />
+            <End Role="Assessment" EntitySet="Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_Instructor" Association="Self.FK_Assessment_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Assessment" EntitySet="Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_User" Association="Self.FK_Assessment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Assessment" EntitySet="Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendence_Enrollment" Association="Self.FK_Attendence_Enrollment">
+            <End Role="Enrollment" EntitySet="Enrollment" />
+            <End Role="Attendence" EntitySet="Attendence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendence_Instructor" Association="Self.FK_Attendence_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Attendence" EntitySet="Attendence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendence_User" Association="Self.FK_Attendence_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Attendence" EntitySet="Attendence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Batch_User" Association="Self.FK_Batch_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Batch" EntitySet="Batch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_User" Association="Self.FK_Course_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_User" Association="Self.FK_Department_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_Batch" Association="Self.FK_Enrollment_Batch">
+            <End Role="Batch" EntitySet="Batch" />
+            <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_Section" Association="Self.FK_Enrollment_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_Student" Association="Self.FK_Enrollment_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_User" Association="Self.FK_Enrollment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Department" Association="Self.FK_Instructor_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Instructor" EntitySet="Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_User" Association="Self.FK_Instructor_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Instructor" EntitySet="Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_User1" Association="Self.FK_Instructor_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Instructor" EntitySet="Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_Instructor" Association="Self.FK_InstructorCourses_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="InstructorCourses" EntitySet="InstructorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_Section" Association="Self.FK_InstructorCourses_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="InstructorCourses" EntitySet="InstructorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_User" Association="Self.FK_InstructorCourses_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="InstructorCourses" EntitySet="InstructorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_User" Association="Self.FK_Section_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_User" Association="Self.FK_Student_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_User1" Association="Self.FK_Student_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCourses_Course" Association="Self.FK_StudentCourses_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CTTI_ICT_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CTTIDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assessments" EntityType="CTTI_ICT_DBModel.Assessment" />
+          <EntitySet Name="Attendences" EntityType="CTTI_ICT_DBModel.Attendence" />
+          <EntitySet Name="Batches" EntityType="CTTI_ICT_DBModel.Batch" />
+          <EntitySet Name="Courses" EntityType="CTTI_ICT_DBModel.Course" />
+          <EntitySet Name="Departments" EntityType="CTTI_ICT_DBModel.Department" />
+          <EntitySet Name="Enrollments" EntityType="CTTI_ICT_DBModel.Enrollment" />
+          <EntitySet Name="Instructors" EntityType="CTTI_ICT_DBModel.Instructor" />
+          <EntitySet Name="InstructorCourses" EntityType="CTTI_ICT_DBModel.InstructorCours" />
+          <EntitySet Name="Sections" EntityType="CTTI_ICT_DBModel.Section" />
+          <EntitySet Name="Students" EntityType="CTTI_ICT_DBModel.Student" />
+          <EntitySet Name="Users" EntityType="CTTI_ICT_DBModel.User" />
+          <AssociationSet Name="FK_Assessment_Enrollment" Association="CTTI_ICT_DBModel.FK_Assessment_Enrollment">
+            <End Role="Enrollment" EntitySet="Enrollments" />
+            <End Role="Assessment" EntitySet="Assessments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_Instructor" Association="CTTI_ICT_DBModel.FK_Assessment_Instructor">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="Assessment" EntitySet="Assessments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_User" Association="CTTI_ICT_DBModel.FK_Assessment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Assessment" EntitySet="Assessments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendence_Enrollment" Association="CTTI_ICT_DBModel.FK_Attendence_Enrollment">
+            <End Role="Enrollment" EntitySet="Enrollments" />
+            <End Role="Attendence" EntitySet="Attendences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendence_Instructor" Association="CTTI_ICT_DBModel.FK_Attendence_Instructor">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="Attendence" EntitySet="Attendences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendence_User" Association="CTTI_ICT_DBModel.FK_Attendence_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Attendence" EntitySet="Attendences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Batch_User" Association="CTTI_ICT_DBModel.FK_Batch_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Batch" EntitySet="Batches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_Batch" Association="CTTI_ICT_DBModel.FK_Enrollment_Batch">
+            <End Role="Batch" EntitySet="Batches" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_User" Association="CTTI_ICT_DBModel.FK_Course_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCourses_Course" Association="CTTI_ICT_DBModel.FK_StudentCourses_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_User" Association="CTTI_ICT_DBModel.FK_Department_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Department" Association="CTTI_ICT_DBModel.FK_Instructor_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_Section" Association="CTTI_ICT_DBModel.FK_Enrollment_Section">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_Student" Association="CTTI_ICT_DBModel.FK_Enrollment_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollment_User" Association="CTTI_ICT_DBModel.FK_Enrollment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_User" Association="CTTI_ICT_DBModel.FK_Instructor_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_User1" Association="CTTI_ICT_DBModel.FK_Instructor_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_Instructor" Association="CTTI_ICT_DBModel.FK_InstructorCourses_Instructor">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="InstructorCours" EntitySet="InstructorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_Section" Association="CTTI_ICT_DBModel.FK_InstructorCourses_Section">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="InstructorCours" EntitySet="InstructorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_User" Association="CTTI_ICT_DBModel.FK_InstructorCourses_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="InstructorCours" EntitySet="InstructorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_User" Association="CTTI_ICT_DBModel.FK_Section_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_User" Association="CTTI_ICT_DBModel.FK_Student_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_User1" Association="CTTI_ICT_DBModel.FK_Student_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="BatchName">
+          <Member Name="FA17" />
+          <Member Name="SP18" />
+          <Member Name="FA18" />
+        </EnumType>
+        <EnumType Name="BatchStatus">
+          <Member Name="Active" Value="1" />
+          <Member Name="Completed" Value="2" />
+        </EnumType>
+        <EntityType Name="Assessment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uID" Type="Int32" />
+          <Property Name="enrollmentID" Type="Int32" />
+          <Property Name="A1_Max" Type="Int32" />
+          <Property Name="A1_Obt" Type="Double" />
+          <Property Name="A2_Max" Type="Int32" />
+          <Property Name="A2_Obt" Type="Double" />
+          <Property Name="A3_Max" Type="Int32" />
+          <Property Name="A3_Obt" Type="Double" />
+          <Property Name="A4_Max" Type="Int32" />
+          <Property Name="A4_Obt" Type="Double" />
+          <Property Name="A5_Max" Type="Int32" />
+          <Property Name="A5_Obt" Type="Double" />
+          <Property Name="Q1_Max" Type="Int32" />
+          <Property Name="Q1_Obt" Type="Double" />
+          <Property Name="Q2_Max" Type="Int32" />
+          <Property Name="Q2_Obt" Type="Double" />
+          <Property Name="Q3_Max" Type="Int32" />
+          <Property Name="Q3_Obt" Type="Double" />
+          <Property Name="Mid_Max" Type="Int32" />
+          <Property Name="Mid_Obt" Type="Double" />
+          <Property Name="SendUp_Max" Type="Int32" />
+          <Property Name="SendUp_Obt" Type="Double" />
+          <Property Name="Final_Max" Type="Int32" />
+          <Property Name="Final_Obt" Type="Double" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Enrollment" Relationship="CTTI_ICT_DBModel.FK_Assessment_Enrollment" FromRole="Assessment" ToRole="Enrollment" />
+          <NavigationProperty Name="Instructor" Relationship="CTTI_ICT_DBModel.FK_Assessment_Instructor" FromRole="Assessment" ToRole="Instructor" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Assessment_User" FromRole="Assessment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Attendence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enrollmentID" Type="Int32" />
+          <Property Name="uID" Type="Int32" />
+          <Property Name="ClassRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="FromTime" Type="DateTime" Precision="3" />
+          <Property Name="ToTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="TopicsCovered" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Enrollment" Relationship="CTTI_ICT_DBModel.FK_Attendence_Enrollment" FromRole="Attendence" ToRole="Enrollment" />
+          <NavigationProperty Name="Instructor" Relationship="CTTI_ICT_DBModel.FK_Attendence_Instructor" FromRole="Attendence" ToRole="Instructor" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Attendence_User" FromRole="Attendence" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDt" Type="DateTime" Precision="3" />
+          <Property Name="EndDt" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="uID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Batch_User" FromRole="Batch" ToRole="User" />
+          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Batch" FromRole="Batch" ToRole="Enrollment" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreaditHours" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="uID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Course_User" FromRole="Course" ToRole="User" />
+          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_StudentCourses_Course" FromRole="Course" ToRole="Enrollment" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="uID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Department_User" FromRole="Department" ToRole="User" />
+          <NavigationProperty Name="Instructors" Relationship="CTTI_ICT_DBModel.FK_Instructor_Department" FromRole="Department" ToRole="Instructor" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="BatchID" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="EnrollmentDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uID" Type="Int32" />
+          <NavigationProperty Name="Assessments" Relationship="CTTI_ICT_DBModel.FK_Assessment_Enrollment" FromRole="Enrollment" ToRole="Assessment" />
+          <NavigationProperty Name="Attendences" Relationship="CTTI_ICT_DBModel.FK_Attendence_Enrollment" FromRole="Enrollment" ToRole="Attendence" />
+          <NavigationProperty Name="Batch" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Batch" FromRole="Enrollment" ToRole="Batch" />
+          <NavigationProperty Name="Course" Relationship="CTTI_ICT_DBModel.FK_StudentCourses_Course" FromRole="Enrollment" ToRole="Course" />
+          <NavigationProperty Name="Section" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Section" FromRole="Enrollment" ToRole="Section" />
+          <NavigationProperty Name="Student" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Student" FromRole="Enrollment" ToRole="Student" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Enrollment_User" FromRole="Enrollment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptID" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DeptPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PresentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PresentCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PermanentCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExperienceYear" Type="Int32" />
+          <Property Name="ExperienceMonth" Type="Int32" />
+          <Property Name="JoiningDate" Type="DateTime" Precision="3" />
+          <Property Name="ResignationDate" Type="DateTime" Precision="3" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Assessments" Relationship="CTTI_ICT_DBModel.FK_Assessment_Instructor" FromRole="Instructor" ToRole="Assessment" />
+          <NavigationProperty Name="Attendences" Relationship="CTTI_ICT_DBModel.FK_Attendence_Instructor" FromRole="Instructor" ToRole="Attendence" />
+          <NavigationProperty Name="Department" Relationship="CTTI_ICT_DBModel.FK_Instructor_Department" FromRole="Instructor" ToRole="Department" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Instructor_User" FromRole="Instructor" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="CTTI_ICT_DBModel.FK_Instructor_User1" FromRole="Instructor" ToRole="User" />
+          <NavigationProperty Name="InstructorCourses" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Instructor" FromRole="Instructor" ToRole="InstructorCours" />
+        </EntityType>
+        <EntityType Name="InstructorCours">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sectionID" Type="Int32" Nullable="false" />
+          <Property Name="instructorID" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="uID" Type="Int32" />
+          <NavigationProperty Name="Instructor" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Instructor" FromRole="InstructorCours" ToRole="Instructor" />
+          <NavigationProperty Name="Section" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Section" FromRole="InstructorCours" ToRole="Section" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_User" FromRole="InstructorCours" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="uID" Type="Int32" />
+          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Section" FromRole="Section" ToRole="Enrollment" />
+          <NavigationProperty Name="InstructorCourses" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Section" FromRole="Section" ToRole="InstructorCours" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Section_User" FromRole="Section" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemporaryCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PermanentCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Student" FromRole="Student" ToRole="Enrollment" />
+          <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Student_User" FromRole="Student" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="CTTI_ICT_DBModel.FK_Student_User1" FromRole="Student" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="LastAccessedOn" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assessments" Relationship="CTTI_ICT_DBModel.FK_Assessment_User" FromRole="User" ToRole="Assessment" />
+          <NavigationProperty Name="Attendences" Relationship="CTTI_ICT_DBModel.FK_Attendence_User" FromRole="User" ToRole="Attendence" />
+          <NavigationProperty Name="Batches" Relationship="CTTI_ICT_DBModel.FK_Batch_User" FromRole="User" ToRole="Batch" />
+          <NavigationProperty Name="Courses" Relationship="CTTI_ICT_DBModel.FK_Course_User" FromRole="User" ToRole="Course" />
+          <NavigationProperty Name="Departments" Relationship="CTTI_ICT_DBModel.FK_Department_User" FromRole="User" ToRole="Department" />
+          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_Enrollment_User" FromRole="User" ToRole="Enrollment" />
+          <NavigationProperty Name="Instructors" Relationship="CTTI_ICT_DBModel.FK_Instructor_User" FromRole="User" ToRole="Instructor" />
+          <NavigationProperty Name="Instructors1" Relationship="CTTI_ICT_DBModel.FK_Instructor_User1" FromRole="User" ToRole="Instructor" />
+          <NavigationProperty Name="InstructorCourses" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_User" FromRole="User" ToRole="InstructorCours" />
+          <NavigationProperty Name="Sections" Relationship="CTTI_ICT_DBModel.FK_Section_User" FromRole="User" ToRole="Section" />
+          <NavigationProperty Name="Students" Relationship="CTTI_ICT_DBModel.FK_Student_User" FromRole="User" ToRole="Student" />
+          <NavigationProperty Name="Students1" Relationship="CTTI_ICT_DBModel.FK_Student_User1" FromRole="User" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Assessment_Enrollment">
+          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Assessment" Role="Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enrollment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="enrollmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_Instructor">
+          <End Type="CTTI_ICT_DBModel.Instructor" Role="Instructor" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Assessment" Role="Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Assessment" Role="Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendence_Enrollment">
+          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Attendence" Role="Attendence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enrollment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendence">
+              <PropertyRef Name="enrollmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendence_Instructor">
+          <End Type="CTTI_ICT_DBModel.Instructor" Role="Instructor" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Attendence" Role="Attendence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendence">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendence_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Attendence" Role="Attendence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Attendence">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Batch_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Batch" Role="Batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Batch">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_Batch">
+          <End Type="CTTI_ICT_DBModel.Batch" Role="Batch" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCourses_Course">
+          <End Type="CTTI_ICT_DBModel.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Department" Role="Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Department">
+          <End Type="CTTI_ICT_DBModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Instructor" Role="Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="DeptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_Section">
+          <End Type="CTTI_ICT_DBModel.Section" Role="Section" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_Student">
+          <End Type="CTTI_ICT_DBModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollment_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Instructor" Role="Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_User1">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Instructor" Role="Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorCourses_Instructor">
+          <End Type="CTTI_ICT_DBModel.Instructor" Role="Instructor" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.InstructorCours" Role="InstructorCours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstructorCours">
+              <PropertyRef Name="instructorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorCourses_Section">
+          <End Type="CTTI_ICT_DBModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="CTTI_ICT_DBModel.InstructorCours" Role="InstructorCours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstructorCours">
+              <PropertyRef Name="sectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorCourses_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.InstructorCours" Role="InstructorCours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="InstructorCours">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_User">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="uID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_User1">
+          <End Type="CTTI_ICT_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CTTI_ICT_DBModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CTTI_ICT_DBModelStoreContainer" CdmEntityContainer="CTTIDBEntities">
+          <EntitySetMapping Name="Assessments">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Assessment">
+              <MappingFragment StoreEntitySet="Assessment">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Final_Obt" ColumnName="Final_Obt" />
+                <ScalarProperty Name="Final_Max" ColumnName="Final_Max" />
+                <ScalarProperty Name="SendUp_Obt" ColumnName="SendUp_Obt" />
+                <ScalarProperty Name="SendUp_Max" ColumnName="SendUp_Max" />
+                <ScalarProperty Name="Mid_Obt" ColumnName="Mid_Obt" />
+                <ScalarProperty Name="Mid_Max" ColumnName="Mid_Max" />
+                <ScalarProperty Name="Q3_Obt" ColumnName="Q3_Obt" />
+                <ScalarProperty Name="Q3_Max" ColumnName="Q3_Max" />
+                <ScalarProperty Name="Q2_Obt" ColumnName="Q2_Obt" />
+                <ScalarProperty Name="Q2_Max" ColumnName="Q2_Max" />
+                <ScalarProperty Name="Q1_Obt" ColumnName="Q1_Obt" />
+                <ScalarProperty Name="Q1_Max" ColumnName="Q1_Max" />
+                <ScalarProperty Name="A5_Obt" ColumnName="A5_Obt" />
+                <ScalarProperty Name="A5_Max" ColumnName="A5_Max" />
+                <ScalarProperty Name="A4_Obt" ColumnName="A4_Obt" />
+                <ScalarProperty Name="A4_Max" ColumnName="A4_Max" />
+                <ScalarProperty Name="A3_Obt" ColumnName="A3_Obt" />
+                <ScalarProperty Name="A3_Max" ColumnName="A3_Max" />
+                <ScalarProperty Name="A2_Obt" ColumnName="A2_Obt" />
+                <ScalarProperty Name="A2_Max" ColumnName="A2_Max" />
+                <ScalarProperty Name="A1_Obt" ColumnName="A1_Obt" />
+                <ScalarProperty Name="A1_Max" ColumnName="A1_Max" />
+                <ScalarProperty Name="enrollmentID" ColumnName="enrollmentID" />
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendences">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Attendence">
+              <MappingFragment StoreEntitySet="Attendence">
+                <ScalarProperty Name="TopicsCovered" ColumnName="TopicsCovered" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="enrollmentID" ColumnName="enrollmentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Batches">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Batch">
+              <MappingFragment StoreEntitySet="Batch">
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndDt" ColumnName="EndDt" />
+                <ScalarProperty Name="StartDt" ColumnName="StartDt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreaditHours" ColumnName="CreaditHours" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enrollments">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Enrollment">
+              <MappingFragment StoreEntitySet="Enrollment">
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ResignationDate" ColumnName="ResignationDate" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="ExperienceMonth" ColumnName="ExperienceMonth" />
+                <ScalarProperty Name="ExperienceYear" ColumnName="ExperienceYear" />
+                <ScalarProperty Name="PermanentCity" ColumnName="PermanentCity" />
+                <ScalarProperty Name="PresentCity" ColumnName="PresentCity" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="PresentAddress" ColumnName="PresentAddress" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="DeptPosition" ColumnName="DeptPosition" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstructorCourses">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.InstructorCours">
+              <MappingFragment StoreEntitySet="InstructorCourses">
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="instructorID" ColumnName="instructorID" />
+                <ScalarProperty Name="sectionID" ColumnName="sectionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PermanentCity" ColumnName="PermanentCity" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="TemporaryCity" ColumnName="TemporaryCity" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CTTI_ICT_DBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastAccessedOn" ColumnName="LastAccessedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="UPassword" ColumnName="UPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
