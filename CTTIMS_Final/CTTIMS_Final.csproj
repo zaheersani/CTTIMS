@@ -305,10 +305,11 @@
     <Content Include="Views\Batch\Index.cshtml" />
     <Content Include="Views\Instructor\Create.cshtml" />
     <Content Include="Views\Instructor\Delete.cshtml" />
-    <Content Include="Views\Instructor\Details.cshtml" />
+    <Content Include="Views\Instructor\Details_old.cshtml" />
     <Content Include="Views\Instructor\Edit.cshtml" />
     <Content Include="Views\Instructor\Index.cshtml" />
     <Content Include="Views\Batch\_Layout.cshtml" />
+    <Content Include="Views\Instructor\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

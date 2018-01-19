@@ -3,214 +3,268 @@
 @{
     ViewBag.Title = "Details";
 }
+<style>
+    input.hidden {
+        position: absolute;
+        left: -9999px;
+    }
 
-<h2>Details</h2>
+    #profile-image1 {
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        border: 2px solid #03b1ce;
+    }
 
-<div>
-    <h4>Instructor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    .tital {
+        font-size: 16px;
+        font-weight: 500;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+    .bot-border {
+        border-bottom: 1px #f8f8f8 solid;
+        margin: 5px 0 5px 0;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        @*<h2>Create your snippet's HTML, CSS and Javascript in the editor tabs</h2>*@
+        <div class="row"><span>&nbsp;</span></div>
+        <div class="col-md-7 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>User Profile</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div class="col-sm-6">
+                                <div align="center">
+                                    @if (Model.Photo != null)
+                                    {
+                                        string imageBase64 = Convert.ToBase64String(Model.Photo);
+                                        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                                        <img src="@imageSrc" id="profile-image1" class="img-circle img-responsive" />
+                                    }
+                                    else
+                                    {
+                                        <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+                                    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                                    <input id="profile-image-upload" class="hidden" type="file">
+                                    @*<div style="color:#999;">click here to change profile image</div>*@
+                                    <!--Upload Image Js And Css-->
+                                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                                <br>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FatherName)
-        </dt>
+                                <!-- /input-group -->
+                            </div>
+                            <div class="col-sm-6">
+                                <h4 style="color:#00b1b1;">
+                                    @{
+                                        string name = Html.DisplayFor(model => model.FirstName).ToString() + " " + Html.DisplayFor(model => model.LastName).ToString();
+                                        @name;
+                                    }
+                                </h4>
+                                <p><span>@Html.DisplayFor(model => model.Designation)</span></p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr style="margin:5px 0 5px 0;">
 
-        <dd>
-            @Html.DisplayFor(model => model.FatherName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CNIC)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.FatherName)
+                            </div>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.FatherName)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.CNIC)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CNIC)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.CNIC)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.Gender)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Designation)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.Designation)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Designation)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.Designation)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.Email)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DeptPosition)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.DeptPosition)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DeptPosition)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.DeptPosition)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MobileNo)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.MobileNo)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MobileNo)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.MobileNo)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNo)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.PhoneNo)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNo)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.PhoneNo)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PresentAddress)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.PresentAddress)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PresentAddress)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.PresentAddress)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PermanentAddress)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.PermanentAddress)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PermanentAddress)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.PermanentAddress)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PresentCity)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.PresentCity)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PresentCity)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.PresentCity)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PermanentCity)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.PermanentCity)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PermanentCity)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.PermanentCity)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExperienceYear)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.ExperienceYear)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExperienceYear)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.ExperienceYear)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExperienceMonth)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.ExperienceMonth)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExperienceMonth)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.ExperienceMonth)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.JoiningDate)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.JoiningDate)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.JoiningDate)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.JoiningDate)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResignationDate)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.ResignationDate)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResignationDate)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.ResignationDate)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.Status)
+                            </div>
 
-        <dd>
-            @*@Html.DisplayFor(model => model.Photo)*@
-            @if (Model.Photo != null)
-            {
-                string imageBase64 = Convert.ToBase64String(Model.Photo);
-                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
-                <img src="@imageSrc" width="100" height="100" />
-            }
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.Status)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.CreatedOn)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.CreatedOn)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.ModifiedOn)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.ModifiedOn)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </dt>
+                            <div class="col-sm-5 col-xs-6 tital ">
+                                @Html.DisplayNameFor(model => model.Department.Name)
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedOn)
-        </dd>
+                            <div class="col-sm-7 col-xs-6 ">
+                                @Html.DisplayFor(model => model.Department.Name)
+                            </div><div class="clearfix"></div><div class="bot-border"></div>
+                            @*<div class="col-sm-5 col-xs-6 tital ">Middle Name:</div><div class="col-sm-7"> Shankar</div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                                <div class="col-sm-5 col-xs-6 tital ">Last Name:</div><div class="col-sm-7"> Huddedar</div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                                <div class="col-sm-5 col-xs-6 tital ">Date Of Joining:</div><div class="col-sm-7">15 Jun 2016</div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                                <div class="col-sm-5 col-xs-6 tital ">Date Of Birth:</div><div class="col-sm-7">11 Jun 1998</div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                                <div class="col-sm-5 col-xs-6 tital ">Place Of Birth:</div><div class="col-sm-7">Shirdi</div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                                <div class="col-sm-5 col-xs-6 tital ">Nationality:</div><div class="col-sm-7">Indian</div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                                <div class="col-sm-5 col-xs-6 tital ">Relition:</div><div class="col-sm-7">Hindu</div>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Department.Name)
-        </dt>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Department.Name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.UserName)
-        </dd>
-
-    </dl>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $('#profile-image1').on('click', function () {
+                    $('#profile-image-upload').click();
+                });
+            });
+        </script>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
