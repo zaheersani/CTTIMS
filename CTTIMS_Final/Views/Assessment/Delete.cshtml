@@ -1,0 +1,240 @@
+﻿@model CTTIMS_Final.Models.Assessment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Assessment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.A1_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A1_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A1_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A1_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A2_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A2_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A2_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A2_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A3_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A3_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A3_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A3_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A4_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A4_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A4_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A4_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A5_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A5_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.A5_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.A5_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q1_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q1_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q1_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q1_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q2_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q2_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q2_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q2_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q3_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q3_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q3_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q3_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mid_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mid_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mid_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mid_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SendUp_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SendUp_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SendUp_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SendUp_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Final_Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Final_Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Final_Obt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Final_Obt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enrollment.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enrollment.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -3,7 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace DBFirstSession
+namespace CTTIMS_Final
 {
     public partial class Startup
     {

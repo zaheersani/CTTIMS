@@ -7,20 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBFirstSession.Models
+namespace CTTIMS_Final.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class InstructorCours
     {
+        public InstructorCours()
+        {
+            this.Enrollments = new HashSet<Enrollment>();
+        }
+    
         public int ID { get; set; }
-        public int sectionID { get; set; }
-        public Nullable<int> instructorID { get; set; }
+        public string ClassRoom { get; set; }
+        public Nullable<int> SectionID { get; set; }
+        public Nullable<int> InstructorID { get; set; }
+        public Nullable<int> CourseID { get; set; }
+        public Nullable<int> BatchID { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public string Room { get; set; }
         public Nullable<int> uID { get; set; }
     
+        public virtual Batch Batch { get; set; }
+        public virtual Course Course { get; set; }
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
         public virtual Instructor Instructor { get; set; }
         public virtual Section Section { get; set; }
         public virtual User User { get; set; }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(DBFirstSession.Startup))]
-namespace DBFirstSession
+[assembly: OwinStartupAttribute(typeof(CTTIMS_Final.Startup))]
+namespace CTTIMS_Final
 {
     public partial class Startup
     {

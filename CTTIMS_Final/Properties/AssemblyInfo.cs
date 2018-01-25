@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DBFirstSession")]
+[assembly: AssemblyTitle("CTTIMS_Final")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DBFirstSession")]
+[assembly: AssemblyProduct("CTTIMS_Final")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

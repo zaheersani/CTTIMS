@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBFirstSession.Models
+namespace CTTIMS_Final.Models
 {
     using System;
     using System.Collections.Generic;
@@ -21,10 +21,8 @@ namespace DBFirstSession.Models
         }
     
         public int ID { get; set; }
-        public Nullable<int> SectionID { get; set; }
-        public Nullable<int> CourseID { get; set; }
-        public Nullable<int> BatchID { get; set; }
         public Nullable<int> StudentID { get; set; }
+        public Nullable<int> InstructorCoursesID { get; set; }
         public Nullable<System.DateTime> EnrollmentDate { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
@@ -33,9 +31,7 @@ namespace DBFirstSession.Models
     
         public virtual ICollection<Assessment> Assessments { get; set; }
         public virtual ICollection<Attendence> Attendences { get; set; }
-        public virtual Batch Batch { get; set; }
-        public virtual Course Course { get; set; }
-        public virtual Section Section { get; set; }
+        public virtual InstructorCours InstructorCours { get; set; }
         public virtual Student Student { get; set; }
         public virtual User User { get; set; }
     }

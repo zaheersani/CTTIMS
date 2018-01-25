@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBFirstSession.Models
+namespace CTTIMS_Final.Models
 {
     using System;
     using System.Collections.Generic;

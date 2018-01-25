@@ -1,4 +1,4 @@
-﻿@model DBFirstSession.Models.Instructor
+﻿@model CTTIMS_Final.Models.Instructor
 
 @{
     ViewBag.Title = "Create";
@@ -60,7 +60,7 @@
             @Html.LabelFor(model => model.Designation, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Designation)*@
-                @Html.DropDownListFor(model => model.Designation, EnumHelper.GetSelectList(typeof(DBFirstSession.Models.Designation)))
+                @Html.DropDownListFor(model => model.Designation, EnumHelper.GetSelectList(typeof(CTTIMS_Final.Models.Designation)))
                 @Html.ValidationMessageFor(model => model.Designation)
             </div>
         </div>

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace DBFirstSession.Models
+namespace CTTIMS_Final.Models
 {
     [MetadataType(typeof(UserMetadata))]
     public partial class User 

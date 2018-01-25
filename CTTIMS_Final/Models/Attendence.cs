@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBFirstSession.Models
+namespace CTTIMS_Final.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace DBFirstSession.Models
     public partial class Attendence
     {
         public int ID { get; set; }
-        public Nullable<int> enrollmentID { get; set; }
+        public Nullable<int> EnrollmentID { get; set; }
         public Nullable<int> uID { get; set; }
         public string ClassRoom { get; set; }
         public string Status { get; set; }

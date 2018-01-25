@@ -1,0 +1,242 @@
+﻿@model CTTIMS_Final.Models.Assessment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Assessment</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.uID, "uID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("uID", String.Empty)
+                @Html.ValidationMessageFor(model => model.uID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnrollmentID, "EnrollmentID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EnrollmentID", String.Empty)
+                @Html.ValidationMessageFor(model => model.EnrollmentID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A1_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A1_Max)
+                @Html.ValidationMessageFor(model => model.A1_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A1_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A1_Obt)
+                @Html.ValidationMessageFor(model => model.A1_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A2_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A2_Max)
+                @Html.ValidationMessageFor(model => model.A2_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A2_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A2_Obt)
+                @Html.ValidationMessageFor(model => model.A2_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A3_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A3_Max)
+                @Html.ValidationMessageFor(model => model.A3_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A3_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A3_Obt)
+                @Html.ValidationMessageFor(model => model.A3_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A4_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A4_Max)
+                @Html.ValidationMessageFor(model => model.A4_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A4_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A4_Obt)
+                @Html.ValidationMessageFor(model => model.A4_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A5_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A5_Max)
+                @Html.ValidationMessageFor(model => model.A5_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.A5_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.A5_Obt)
+                @Html.ValidationMessageFor(model => model.A5_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Q1_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Q1_Max)
+                @Html.ValidationMessageFor(model => model.Q1_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Q1_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Q1_Obt)
+                @Html.ValidationMessageFor(model => model.Q1_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Q2_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Q2_Max)
+                @Html.ValidationMessageFor(model => model.Q2_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Q2_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Q2_Obt)
+                @Html.ValidationMessageFor(model => model.Q2_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Q3_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Q3_Max)
+                @Html.ValidationMessageFor(model => model.Q3_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Q3_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Q3_Obt)
+                @Html.ValidationMessageFor(model => model.Q3_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mid_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mid_Max)
+                @Html.ValidationMessageFor(model => model.Mid_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mid_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mid_Obt)
+                @Html.ValidationMessageFor(model => model.Mid_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SendUp_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SendUp_Max)
+                @Html.ValidationMessageFor(model => model.SendUp_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SendUp_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SendUp_Obt)
+                @Html.ValidationMessageFor(model => model.SendUp_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Final_Max, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Final_Max)
+                @Html.ValidationMessageFor(model => model.Final_Max)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Final_Obt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Final_Obt)
+                @Html.ValidationMessageFor(model => model.Final_Obt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedOn, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedOn)
+                @Html.ValidationMessageFor(model => model.CreatedOn)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ModifiedOn, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ModifiedOn)
+                @Html.ValidationMessageFor(model => model.ModifiedOn)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

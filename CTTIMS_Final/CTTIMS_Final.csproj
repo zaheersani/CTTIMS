@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DBFirstSession</RootNamespace>
+    <RootNamespace>CTTIMS_Final</RootNamespace>
     <AssemblyName>DBFirstSession</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -160,15 +166,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssessmentController.cs" />
     <Compile Include="Controllers\BatchController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Assessment.cs">
       <DependentUpon>CTTIMSModels.tt</DependentUpon>
     </Compile>
@@ -208,7 +212,6 @@
     <Compile Include="Models\Enrollment.cs">
       <DependentUpon>CTTIMSModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Instructor.cs">
       <DependentUpon>CTTIMSModels.tt</DependentUpon>
     </Compile>
@@ -232,6 +235,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -282,15 +286,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
@@ -310,6 +305,11 @@
     <Content Include="Views\Instructor\Index.cshtml" />
     <Content Include="Views\Batch\_Layout.cshtml" />
     <Content Include="Views\Instructor\Details.cshtml" />
+    <Content Include="Views\Assessment\Create.cshtml" />
+    <Content Include="Views\Assessment\Delete.cshtml" />
+    <Content Include="Views\Assessment\Details.cshtml" />
+    <Content Include="Views\Assessment\Edit.cshtml" />
+    <Content Include="Views\Assessment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

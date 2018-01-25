@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DBFirstSession
+namespace CTTIMS_Final
 {
     public class RouteConfig
     {

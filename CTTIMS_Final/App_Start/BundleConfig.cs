@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DBFirstSession
+namespace CTTIMS_Final
 {
     public class BundleConfig
     {

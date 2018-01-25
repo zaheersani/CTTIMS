@@ -1,4 +1,8 @@
-﻿@model IEnumerable<DBFirstSession.Models.Instructor>
+﻿@*@model IEnumerable<CTTIMS_Final.Models.Instructor>*@
+
+@model PagedList.IPagedList<CTTIMS_Final.Models.Instructor>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -12,76 +16,76 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            FirstName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            LastName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FatherName)
+            FatherName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CNIC)
+            CNIC
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Gender)
+            Gender
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Designation)
+            Designation
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeptPosition)
+            DeptPosition
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MobileNo)
+            MobileNo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNo)
+            PhoneNo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PresentAddress)
+            PresentAddress
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PermanentAddress)
+            PermanentAddress
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PresentCity)
+            PresentCity
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PermanentCity)
+            PermanentCity
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ExperienceYear)
+            ExperienceYear
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ExperienceMonth)
+            ExperienceMonth
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.JoiningDate)
+            JoiningDate
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ResignationDate)
+            ResignationDate
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Photo)
+            Photo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
+            CreatedOn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
+            ModifiedOn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Department.Name)
+            Department.Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
+            User.UserName
         </th>
         <th></th>
     </tr>
@@ -171,3 +175,8 @@
     }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    @*new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

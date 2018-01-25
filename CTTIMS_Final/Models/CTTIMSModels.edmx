@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="uID" Type="int" />
-          <Property Name="enrollmentID" Type="int" />
+          <Property Name="EnrollmentID" Type="int" />
           <Property Name="A1_Max" Type="int" />
           <Property Name="A1_Obt" Type="float" />
           <Property Name="A2_Max" Type="int" />
@@ -42,7 +42,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="enrollmentID" Type="int" />
+          <Property Name="EnrollmentID" Type="int" />
           <Property Name="uID" Type="int" />
           <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="char" MaxLength="1" />
@@ -95,10 +95,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SectionID" Type="int" />
-          <Property Name="CourseID" Type="int" />
-          <Property Name="BatchID" Type="int" />
           <Property Name="StudentID" Type="int" />
+          <Property Name="InstructorCoursesID" Type="int" />
           <Property Name="EnrollmentDate" Type="datetime" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
@@ -142,10 +140,14 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sectionID" Type="int" Nullable="false" />
-          <Property Name="instructorID" Type="int" />
+          <Property Name="ClassRoom" Type="nvarchar(max)" />
+          <Property Name="SectionID" Type="int" />
+          <Property Name="InstructorID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="BatchID" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Room" Type="nvarchar(max)" />
           <Property Name="uID" Type="int" />
         </EntityType>
         <EntityType Name="Section">
@@ -203,7 +205,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Assessment">
-              <PropertyRef Name="enrollmentID" />
+              <PropertyRef Name="EnrollmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -239,7 +241,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Attendence">
-              <PropertyRef Name="enrollmentID" />
+              <PropertyRef Name="EnrollmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -303,27 +305,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Enrollment_Batch">
-          <End Role="Batch" Type="Self.Batch" Multiplicity="0..1" />
+        <Association Name="FK_Enrollment_InstructorCourses">
+          <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="0..1" />
           <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Batch">
+            <Principal Role="InstructorCourses">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Enrollment">
-              <PropertyRef Name="BatchID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Enrollment_Section">
-          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
-          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Section">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Enrollment">
-              <PropertyRef Name="SectionID" />
+              <PropertyRef Name="InstructorCoursesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -387,6 +377,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_InstructorCourses_Batch">
+          <End Role="Batch" Type="Self.Batch" Multiplicity="0..1" />
+          <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstructorCourses">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorCourses_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstructorCourses">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InstructorCourses_Instructor">
           <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
           <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="*" />
@@ -395,19 +409,19 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="InstructorCourses">
-              <PropertyRef Name="instructorID" />
+              <PropertyRef Name="InstructorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InstructorCourses_Section">
-          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
           <End Role="InstructorCourses" Type="Self.InstructorCourses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="InstructorCourses">
-              <PropertyRef Name="sectionID" />
+              <PropertyRef Name="SectionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,18 +473,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentCourses_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
-          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Enrollment">
-              <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CTTI_ICT_DBModelStoreContainer">
           <EntitySet Name="Assessment" EntityType="Self.Assessment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendence" EntityType="Self.Attendence" Schema="dbo" store:Type="Tables" />
@@ -519,12 +521,8 @@
             <End Role="User" EntitySet="User" />
             <End Role="Department" EntitySet="Department" />
           </AssociationSet>
-          <AssociationSet Name="FK_Enrollment_Batch" Association="Self.FK_Enrollment_Batch">
-            <End Role="Batch" EntitySet="Batch" />
-            <End Role="Enrollment" EntitySet="Enrollment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Enrollment_Section" Association="Self.FK_Enrollment_Section">
-            <End Role="Section" EntitySet="Section" />
+          <AssociationSet Name="FK_Enrollment_InstructorCourses" Association="Self.FK_Enrollment_InstructorCourses">
+            <End Role="InstructorCourses" EntitySet="InstructorCourses" />
             <End Role="Enrollment" EntitySet="Enrollment" />
           </AssociationSet>
           <AssociationSet Name="FK_Enrollment_Student" Association="Self.FK_Enrollment_Student">
@@ -546,6 +544,14 @@
           <AssociationSet Name="FK_Instructor_User1" Association="Self.FK_Instructor_User1">
             <End Role="User" EntitySet="User" />
             <End Role="Instructor" EntitySet="Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_Batch" Association="Self.FK_InstructorCourses_Batch">
+            <End Role="Batch" EntitySet="Batch" />
+            <End Role="InstructorCourses" EntitySet="InstructorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorCourses_Course" Association="Self.FK_InstructorCourses_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="InstructorCourses" EntitySet="InstructorCourses" />
           </AssociationSet>
           <AssociationSet Name="FK_InstructorCourses_Instructor" Association="Self.FK_InstructorCourses_Instructor">
             <End Role="Instructor" EntitySet="Instructor" />
@@ -570,10 +576,6 @@
           <AssociationSet Name="FK_Student_User1" Association="Self.FK_Student_User1">
             <End Role="User" EntitySet="User" />
             <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentCourses_Course" Association="Self.FK_StudentCourses_Course">
-            <End Role="Course" EntitySet="Course" />
-            <End Role="Enrollment" EntitySet="Enrollment" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -620,17 +622,17 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Batch" EntitySet="Batches" />
           </AssociationSet>
-          <AssociationSet Name="FK_Enrollment_Batch" Association="CTTI_ICT_DBModel.FK_Enrollment_Batch">
+          <AssociationSet Name="FK_InstructorCourses_Batch" Association="CTTI_ICT_DBModel.FK_InstructorCourses_Batch">
             <End Role="Batch" EntitySet="Batches" />
-            <End Role="Enrollment" EntitySet="Enrollments" />
+            <End Role="InstructorCours" EntitySet="InstructorCourses" />
           </AssociationSet>
           <AssociationSet Name="FK_Course_User" Association="CTTI_ICT_DBModel.FK_Course_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Course" EntitySet="Courses" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudentCourses_Course" Association="CTTI_ICT_DBModel.FK_StudentCourses_Course">
+          <AssociationSet Name="FK_InstructorCourses_Course" Association="CTTI_ICT_DBModel.FK_InstructorCourses_Course">
             <End Role="Course" EntitySet="Courses" />
-            <End Role="Enrollment" EntitySet="Enrollments" />
+            <End Role="InstructorCours" EntitySet="InstructorCourses" />
           </AssociationSet>
           <AssociationSet Name="FK_Department_User" Association="CTTI_ICT_DBModel.FK_Department_User">
             <End Role="User" EntitySet="Users" />
@@ -640,8 +642,8 @@
             <End Role="Department" EntitySet="Departments" />
             <End Role="Instructor" EntitySet="Instructors" />
           </AssociationSet>
-          <AssociationSet Name="FK_Enrollment_Section" Association="CTTI_ICT_DBModel.FK_Enrollment_Section">
-            <End Role="Section" EntitySet="Sections" />
+          <AssociationSet Name="FK_Enrollment_InstructorCourses" Association="CTTI_ICT_DBModel.FK_Enrollment_InstructorCourses">
+            <End Role="InstructorCours" EntitySet="InstructorCourses" />
             <End Role="Enrollment" EntitySet="Enrollments" />
           </AssociationSet>
           <AssociationSet Name="FK_Enrollment_Student" Association="CTTI_ICT_DBModel.FK_Enrollment_Student">
@@ -700,7 +702,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="uID" Type="Int32" />
-          <Property Name="enrollmentID" Type="Int32" />
+          <Property Name="EnrollmentID" Type="Int32" />
           <Property Name="A1_Max" Type="Int32" />
           <Property Name="A1_Obt" Type="Double" />
           <Property Name="A2_Max" Type="Int32" />
@@ -734,7 +736,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="enrollmentID" Type="Int32" />
+          <Property Name="EnrollmentID" Type="Int32" />
           <Property Name="uID" Type="Int32" />
           <Property Name="ClassRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -761,7 +763,7 @@
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <Property Name="uID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Batch_User" FromRole="Batch" ToRole="User" />
-          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Batch" FromRole="Batch" ToRole="Enrollment" />
+          <NavigationProperty Name="InstructorCourses" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Batch" FromRole="Batch" ToRole="InstructorCours" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -776,7 +778,7 @@
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <Property Name="uID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Course_User" FromRole="Course" ToRole="User" />
-          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_StudentCourses_Course" FromRole="Course" ToRole="Enrollment" />
+          <NavigationProperty Name="InstructorCourses" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Course" FromRole="Course" ToRole="InstructorCours" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -796,10 +798,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SectionID" Type="Int32" />
-          <Property Name="CourseID" Type="Int32" />
-          <Property Name="BatchID" Type="Int32" />
           <Property Name="StudentID" Type="Int32" />
+          <Property Name="InstructorCoursesID" Type="Int32" />
           <Property Name="EnrollmentDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
@@ -807,9 +807,7 @@
           <Property Name="uID" Type="Int32" />
           <NavigationProperty Name="Assessments" Relationship="CTTI_ICT_DBModel.FK_Assessment_Enrollment" FromRole="Enrollment" ToRole="Assessment" />
           <NavigationProperty Name="Attendences" Relationship="CTTI_ICT_DBModel.FK_Attendence_Enrollment" FromRole="Enrollment" ToRole="Attendence" />
-          <NavigationProperty Name="Batch" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Batch" FromRole="Enrollment" ToRole="Batch" />
-          <NavigationProperty Name="Course" Relationship="CTTI_ICT_DBModel.FK_StudentCourses_Course" FromRole="Enrollment" ToRole="Course" />
-          <NavigationProperty Name="Section" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Section" FromRole="Enrollment" ToRole="Section" />
+          <NavigationProperty Name="InstructorCours" Relationship="CTTI_ICT_DBModel.FK_Enrollment_InstructorCourses" FromRole="Enrollment" ToRole="InstructorCours" />
           <NavigationProperty Name="Student" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Student" FromRole="Enrollment" ToRole="Student" />
           <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Enrollment_User" FromRole="Enrollment" ToRole="User" />
         </EntityType>
@@ -856,11 +854,18 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sectionID" Type="Int32" Nullable="false" />
-          <Property Name="instructorID" Type="Int32" />
+          <Property Name="ClassRoom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SectionID" Type="Int32" />
+          <Property Name="InstructorID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="BatchID" Type="Int32" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="Room" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="uID" Type="Int32" />
+          <NavigationProperty Name="Batch" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Batch" FromRole="InstructorCours" ToRole="Batch" />
+          <NavigationProperty Name="Course" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Course" FromRole="InstructorCours" ToRole="Course" />
+          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_Enrollment_InstructorCourses" FromRole="InstructorCours" ToRole="Enrollment" />
           <NavigationProperty Name="Instructor" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Instructor" FromRole="InstructorCours" ToRole="Instructor" />
           <NavigationProperty Name="Section" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Section" FromRole="InstructorCours" ToRole="Section" />
           <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_User" FromRole="InstructorCours" ToRole="User" />
@@ -874,7 +879,6 @@
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="uID" Type="Int32" />
-          <NavigationProperty Name="Enrollments" Relationship="CTTI_ICT_DBModel.FK_Enrollment_Section" FromRole="Section" ToRole="Enrollment" />
           <NavigationProperty Name="InstructorCourses" Relationship="CTTI_ICT_DBModel.FK_InstructorCourses_Section" FromRole="Section" ToRole="InstructorCours" />
           <NavigationProperty Name="User" Relationship="CTTI_ICT_DBModel.FK_Section_User" FromRole="Section" ToRole="User" />
         </EntityType>
@@ -938,7 +942,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Assessment">
-              <PropertyRef Name="enrollmentID" />
+              <PropertyRef Name="EnrollmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -974,7 +978,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Attendence">
-              <PropertyRef Name="enrollmentID" />
+              <PropertyRef Name="EnrollmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1014,14 +1018,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Enrollment_Batch">
+        <Association Name="FK_InstructorCourses_Batch">
           <End Type="CTTI_ICT_DBModel.Batch" Role="Batch" Multiplicity="0..1" />
-          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <End Type="CTTI_ICT_DBModel.InstructorCours" Role="InstructorCours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Batch">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Enrollment">
+            <Dependent Role="InstructorCours">
               <PropertyRef Name="BatchID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1038,14 +1042,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentCourses_Course">
+        <Association Name="FK_InstructorCourses_Course">
           <End Type="CTTI_ICT_DBModel.Course" Role="Course" Multiplicity="0..1" />
-          <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <End Type="CTTI_ICT_DBModel.InstructorCours" Role="InstructorCours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Enrollment">
+            <Dependent Role="InstructorCours">
               <PropertyRef Name="CourseID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1074,15 +1078,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Enrollment_Section">
-          <End Type="CTTI_ICT_DBModel.Section" Role="Section" Multiplicity="0..1" />
+        <Association Name="FK_Enrollment_InstructorCourses">
+          <End Type="CTTI_ICT_DBModel.InstructorCours" Role="InstructorCours" Multiplicity="0..1" />
           <End Type="CTTI_ICT_DBModel.Enrollment" Role="Enrollment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Section">
+            <Principal Role="InstructorCours">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Enrollment">
-              <PropertyRef Name="SectionID" />
+              <PropertyRef Name="InstructorCoursesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1142,19 +1146,19 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="InstructorCours">
-              <PropertyRef Name="instructorID" />
+              <PropertyRef Name="InstructorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InstructorCourses_Section">
-          <End Type="CTTI_ICT_DBModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="CTTI_ICT_DBModel.Section" Role="Section" Multiplicity="0..1" />
           <End Type="CTTI_ICT_DBModel.InstructorCours" Role="InstructorCours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="InstructorCours">
-              <PropertyRef Name="sectionID" />
+              <PropertyRef Name="SectionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1206,7 +1210,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1239,7 +1243,7 @@
                 <ScalarProperty Name="A2_Max" ColumnName="A2_Max" />
                 <ScalarProperty Name="A1_Obt" ColumnName="A1_Obt" />
                 <ScalarProperty Name="A1_Max" ColumnName="A1_Max" />
-                <ScalarProperty Name="enrollmentID" ColumnName="enrollmentID" />
+                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
                 <ScalarProperty Name="uID" ColumnName="uID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -1257,7 +1261,7 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
                 <ScalarProperty Name="uID" ColumnName="uID" />
-                <ScalarProperty Name="enrollmentID" ColumnName="enrollmentID" />
+                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1310,10 +1314,8 @@
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="InstructorCoursesID" ColumnName="InstructorCoursesID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1355,10 +1357,14 @@
             <EntityTypeMapping TypeName="CTTI_ICT_DBModel.InstructorCours">
               <MappingFragment StoreEntitySet="InstructorCourses">
                 <ScalarProperty Name="uID" ColumnName="uID" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="instructorID" ColumnName="instructorID" />
-                <ScalarProperty Name="sectionID" ColumnName="sectionID" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

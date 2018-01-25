@@ -6,20 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DBFirstSession.Models;
+using CTTIMS_Final.Models;
 
-namespace DBFirstSession.Controllers
+using PagedList;
+
+namespace CTTIMS_Final.Controllers
 {
     public class InstructorController : Controller
     {
         private CTTIDBEntities db = new CTTIDBEntities();
 
-        // TODO: Remove uid when inserting/editing record
         // GET: /Instructor/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var instructors = db.Instructors.Include(i => i.Department).Include(i => i.User);
-            return View(instructors.ToList());
+            var instructors = db.Instructors
+                                .Include(i => i.Department)
+                                .Include(i => i.User);
+
+            instructors = instructors.OrderBy(n => n.FirstName);
+
+            int pageSize = 1;
+            int pageNumber = (page ?? 1);
+            return View(instructors.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Instructor/Details/5

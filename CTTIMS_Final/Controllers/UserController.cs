@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DBFirstSession.Models;
+using CTTIMS_Final.Models;
 
-namespace DBFirstSession.Controllers
+namespace CTTIMS_Final.Controllers
 {
     public class UserController : Controller
     {

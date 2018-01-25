@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBFirstSession.Models
+namespace CTTIMS_Final.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,6 @@ namespace DBFirstSession.Models
     {
         public Section()
         {
-            this.Enrollments = new HashSet<Enrollment>();
             this.InstructorCourses = new HashSet<InstructorCours>();
         }
     
@@ -26,7 +25,6 @@ namespace DBFirstSession.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<int> uID { get; set; }
     
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
         public virtual ICollection<InstructorCours> InstructorCourses { get; set; }
         public virtual User User { get; set; }
     }
