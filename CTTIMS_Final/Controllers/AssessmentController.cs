@@ -17,8 +17,38 @@ namespace CTTIMS_Final.Controllers
         // GET: /Assessment/
         public ActionResult Index()
         {
-            var assessments = db.Assessments.Include(a => a.Enrollment).Include(a => a.Instructor).Include(a => a.User);
-            return View(assessments.ToList());
+            IEnumerable<Assessment> assessments = this.GetAssessments();
+            if(assessments != null)
+                return View(assessments.ToList());
+            return View();
+        }
+
+        private IEnumerable<Assessment> GetAssessments()
+        {
+            // Select a course for adding marks
+            var r = db.InstructorCourses.Where(x => x.InstructorID == 9
+                                       && x.BatchID == 1 && x.SectionID == 1 && x.CourseID == 3);
+
+            InstructorCours instCourse = null;
+            if (r.Count() > 0)
+            {
+                instCourse = r.ToList()[0];
+                //instCourse.ClassRoom
+            }
+            // proceed only if a course is assigned to instructor
+            IEnumerable<Assessment> assessments = null;
+            if (instCourse != null)
+            {
+                // Get enrollments for filtered batch, section and course
+                var enr = db.Enrollments.Where(x => x.InstructorCoursesID == instCourse.ID);
+
+                if (enr.Count() > 0)
+                {
+                    assessments = db.Assessments.Where(x => enr.Any(eid => eid.ID == x.EnrollmentID));
+                    return assessments.ToList();
+                }
+            }
+            return null;
         }
 
         // GET: /Assessment/Details/5
@@ -39,34 +69,9 @@ namespace CTTIMS_Final.Controllers
         // GET: /Assessment/Create
         public ActionResult Create()
         {
-            SelectListItem[] list = new SelectListItem[]
-            {
-                new SelectListItem { Text = "Assignment 1", Value = "A1"},
-                new SelectListItem { Text = "Assignment 2", Value = "A2"}
-            };
-            ViewBag.Type = new SelectList(list);
-            // Select a course for adding marks
-            var r = db.InstructorCourses.Where(x => x.InstructorID == 9
-                                       && x.BatchID == 1 && x.SectionID == 1 && x.CourseID == 3);
-
-            InstructorCours instCourse = null;
-            if (r.Count() > 0)
-            {
-                instCourse = r.ToList()[0];
-            }
-            // proceed only if a course is assigned to instructor
-            IEnumerable<Assessment> assessments = null;
-            if (instCourse != null)
-            {
-                // Get enrollments for filtered batch, section and course
-                var enr = db.Enrollments.Where(x => x.InstructorCoursesID == instCourse.ID);
-
-                if (enr.Count() > 0)
-                {
-                    assessments = db.Assessments.Where(x => enr.Any(eid => eid.ID == x.EnrollmentID));
-                    return View(assessments.ToList());
-                }
-            }
+            IEnumerable<Assessment> assessments = this.GetAssessments();
+            if (assessments != null)
+                return View(assessments.ToList());
             return View();
         }
 

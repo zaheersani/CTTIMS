@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CTTIMS_Final.Models.Assessment>
+﻿@model IList<CTTIMS_Final.Models.Assessment>
 
 @{
     ViewBag.Title = "Index";
@@ -9,181 +9,115 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@if (Model != null)
+{
+    <p>
+        <b>Course:</b>
+        @Model[0].Enrollment.InstructorCours.ClassRoom
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.A1_Max)
+            Sr. No.
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A1_Obt)
+            Student Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A2_Max)
+            A1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A2_Obt)
+            A2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A3_Max)
+            A3
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A3_Obt)
+            A4
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A4_Max)
+            A5
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A4_Obt)
+            Q1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A5_Max)
+            Q2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A5_Obt)
+            Q3
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Q1_Max)
+            Mid Term
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Q1_Obt)
+            Send-Up
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Q2_Max)
+            Final
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Q2_Obt)
+            Entered On
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Q3_Max)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Q3_Obt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mid_Max)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mid_Obt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SendUp_Max)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SendUp_Obt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Final_Max)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Final_Obt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Enrollment.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Instructor.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
+            Modified On
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.A1_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A1_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A2_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A2_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A3_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A3_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A4_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A4_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A5_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.A5_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Q1_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Q1_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Q2_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Q2_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Q3_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Q3_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mid_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mid_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SendUp_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SendUp_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Final_Max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Final_Obt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Enrollment.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Instructor.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @{ int count = 1; }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{
+                    @count;
+                          count++;
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Enrollment.Student.FirstName)&nbsp;@Html.DisplayFor(model => item.Enrollment.Student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.A1_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.A2_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.A3_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.A4_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.A5_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Q1_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Q2_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Q3_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Mid_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.SendUp_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Final_Obt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.ModifiedOn)
+            </td>
+        </tr>
+    }
 
 </table>
