@@ -121,4 +121,7 @@ namespace CTTIMS_Final.Models
         LabSupervisor,
         EquipmentSpecialist
     }
+
+    public enum AssessmentType { Assignment1, Assignment2, Assignment3, Assignment4, Assignment5, Quiz1, Quiz2, Quiz3, MidTerm, Sendup, Final }
+
 }

@@ -1,71 +1,310 @@
 ﻿@model IList<CTTIMS_Final.Models.Assessment>
 
+@using CTTIMS_Final.Models
+
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Assessment</h4>
-        @Html.ValidationSummary(true)
-        @if (Model != null)
-        {
-            <table class="table">
-                <tr>
-                    <th>
-                        Student
-                    </th>
-                    <th>
-                        A1 Max
-                    </th>
-                    <th>
-                        A1 Obtained
-                    </th>
-                </tr>
-                @for (int i = 0; i < Model.Count(); i++)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(model => model[i].Enrollment.Student.FirstName)
-                            @Html.HiddenFor(model => model[i].EnrollmentID)
-                            @Html.HiddenFor(model => model[i].ID)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model[i].A1_Max)
-                            @Html.ValidationMessageFor(model => model[i].A1_Max)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model[i].A1_Obt)
-                            @Html.ValidationMessageFor(model => model[i].A1_Obt)
-                        </td>
-                    </tr>
-                }
-            </table>
-        }
-    </div>
-    if (Model != null)
+<h4>Assessment</h4>
+<div class="form-horizontal">
+    @{
+        AssessmentType? aType = null;
+    }
+    @using (Html.BeginForm("Create", "Assessment", FormMethod.Get))
     {
+        var query = Request.QueryString["type"];
+        // Convert query string value back to Enumerator
+        if (query != null)
+        {
+            aType = (AssessmentType)System.Enum.Parse(typeof(AssessmentType), query);
+        }
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div>
+                <label>Select Assessment</label>
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownList("type", new SelectList(Enum.GetValues(typeof(AssessmentType))), aType.ToString(),
+                                new { @class = "form-control", @onchange = "this.form.submit();" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Maximum Marks</label>
+            </div>
+            <div class="col-md-10">
+                @{ int? maxMarks = null;
+                 if (aType != null)
+                 {
+                     // Assignments
+                     if (aType == AssessmentType.Assignment1)
+                     {
+                         maxMarks = Model[0].A1_Max;
+                     }
+                     else if (aType == AssessmentType.Assignment2)
+                     {
+                         maxMarks = Model[0].A2_Max;
+                     }
+                     else if (aType == AssessmentType.Assignment3)
+                     {
+                         maxMarks = Model[0].A3_Max;
+                     }
+                     else if (aType == AssessmentType.Assignment4)
+                     {
+                         maxMarks = Model[0].A4_Max;
+                     }
+                     else if (aType == AssessmentType.Assignment5)
+                     {
+                         maxMarks = Model[0].A5_Max;
+                     }
+                     // Quiz
+                     else if (aType == AssessmentType.Quiz1)
+                     {
+                         maxMarks = Model[0].Q1_Max;
+                     }
+                     else if (aType == AssessmentType.Quiz2)
+                     {
+                         maxMarks = Model[0].Q2_Max;
+                     }
+                     else if (aType == AssessmentType.Quiz3)
+                     {
+                         maxMarks = Model[0].Q3_Max;
+                     }
+                     // Mid, Sendup, Final
+                     else if (aType == AssessmentType.MidTerm)
+                     {
+                         maxMarks = Model[0].Mid_Max;
+                     }
+                     else if (aType == AssessmentType.Sendup)
+                     {
+                         maxMarks = Model[0].SendUp_Max;
+                     }
+                     else if (aType == AssessmentType.Final)
+                     {
+                         maxMarks = Model[0].Final_Max;
+                     }
+                 }
+                <input type="text" id="max" class="form-control" value="@maxMarks" />
+                    @*@Html.TextBox("max", maxMarks, new { @id = "max", @class = "form-control" })*@
+                }
             </div>
         </div>
     }
-    else
-    {
-        <h5 class="text-danger">Students are not enrolled in this course!</h5>
-    }
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+<div class="form-horizontal">
+    @{
+        int count = 0;
+    }
+    @if (aType != null)
+    {
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            if (Model != null)
+            {
+                <table class="table table-condensed table-hover">
+                    <tr>
+                        <th>
+                            Sr. No.
+                        </th>
+                        <th>
+                            Student Name
+                        </th>
+                        <th>
+                            Obtained Marks
+                        </th>
+                    </tr>
+                    @{
+                count = Model.Count();
+                    }
+                    @for (int i = 0; i < count; i++)
+                    {
+                        // Generate Hidden Fields
+                        if (aType != AssessmentType.Assignment1)
+                        {
+                            @Html.HiddenFor(model => model[i].A1_Obt)
+                            @Html.HiddenFor(model => model[i].A1_Max)
+                        }
+                        if (aType != AssessmentType.Assignment2)
+                        {
+                            @Html.HiddenFor(model => model[i].A2_Obt)
+                            @Html.HiddenFor(model => model[i].A2_Max)
+                        }
+                        if (aType != AssessmentType.Assignment3)
+                        {
+                            @Html.HiddenFor(model => model[i].A3_Obt)
+                            @Html.HiddenFor(model => model[i].A3_Max)
+                        }
+                        if (aType != AssessmentType.Assignment4)
+                        {
+                            @Html.HiddenFor(model => model[i].A4_Obt)
+                            @Html.HiddenFor(model => model[i].A4_Max)
+                        }
+                        if (aType != AssessmentType.Assignment5)
+                        {
+                            @Html.HiddenFor(model => model[i].A5_Obt)
+                            @Html.HiddenFor(model => model[i].A5_Max)
+                        }
+                        if (aType != AssessmentType.Quiz1)
+                        {
+                            @Html.HiddenFor(model => model[i].Q1_Obt)
+                            @Html.HiddenFor(model => model[i].Q1_Max)
+                        }
+                        if (aType != AssessmentType.Quiz2)
+                        {
+                            @Html.HiddenFor(model => model[i].Q2_Obt)
+                            @Html.HiddenFor(model => model[i].Q2_Max)
+                        }
+                        if (aType != AssessmentType.Quiz3)
+                        {
+                            @Html.HiddenFor(model => model[i].Q3_Obt)
+                            @Html.HiddenFor(model => model[i].Q3_Max)
+                        }
+                        if (aType != AssessmentType.MidTerm)
+                        {
+                            @Html.HiddenFor(model => model[i].Mid_Obt)
+                            @Html.HiddenFor(model => model[i].Mid_Max)
+                        }
+                        if (aType != AssessmentType.Sendup)
+                        {
+                            @Html.HiddenFor(model => model[i].SendUp_Obt)
+                            @Html.HiddenFor(model => model[i].SendUp_Max)
+                        }
+                        if (aType != AssessmentType.Final)
+                        {
+                            @Html.HiddenFor(model => model[i].Final_Obt)
+                            @Html.HiddenFor(model => model[i].Final_Max)
+                        }
+                        <tr>
+                            <td>
+                                <!-- Printing S.No. -->
+                                @(i + 1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model[i].Enrollment.Student.FirstName)&nbsp;@Html.DisplayFor(model => model[i].Enrollment.Student.LastName)
+
+                                @Html.HiddenFor(model => model[i].EnrollmentID)
+                                @Html.HiddenFor(model => model[i].ID)
+                            </td>
+                            @if (aType == AssessmentType.Assignment1)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].A1_Obt)
+                                    @Html.HiddenFor(model => model[i].A1_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].A1_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Assignment2)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].A2_Obt)
+                                    @Html.HiddenFor(model => model[i].A2_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].A2_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Assignment3)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].A3_Obt)
+                                    @Html.HiddenFor(model => model[i].A3_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].A3_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Assignment4)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].A4_Obt)
+                                    @Html.HiddenFor(model => model[i].A4_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].A4_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Assignment5)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].A5_Obt)
+                                    @Html.HiddenFor(model => model[i].A5_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].A5_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Quiz1)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].Q1_Obt)
+                                    @Html.HiddenFor(model => model[i].Q1_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].Q1_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Quiz2)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].Q2_Obt)
+                                    @Html.HiddenFor(model => model[i].Q2_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].Q2_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Quiz3)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].Q3_Obt)
+                                    @Html.HiddenFor(model => model[i].Q3_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].Q3_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.MidTerm)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].Mid_Obt)
+                                    @Html.HiddenFor(model => model[i].Mid_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].Mid_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Sendup)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].SendUp_Obt)
+                                    @Html.HiddenFor(model => model[i].SendUp_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].SendUp_Obt)
+                                </td>
+                            }
+                            else if (aType == AssessmentType.Final)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(model => model[i].Final_Obt)
+                                    @Html.HiddenFor(model => model[i].Final_Max, new { @id = ("txt" + @i) })
+                                    @Html.ValidationMessageFor(model => model[i].Final_Obt)
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            }
+            if (Model != null)
+            {
+                <div class="form-group">
+                    <div class="col-md-offset-6 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-success" onclick="AssignMaxMarks()" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h5 class="text-danger">Students are not enrolled in this course!</h5>
+            }
+        }
+    }
+</div>
+
+<script type="text/javascript">
+    function AssignMaxMarks() {
+        for (var i = 0; i < @count ; i++) {
+            var maxVal = document.getElementById("max").value;
+            document.getElementById("txt" + i).value = maxVal;
+        }
+    }
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
