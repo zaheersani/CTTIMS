@@ -1,0 +1,96 @@
+﻿@model IList<CTTIMS_Final.Models.Attendence>
+
+@using CTTIMS_Final.Models
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Attendence</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <div>
+                <label>Select Date</label>
+            </div>
+            <div class="col-md-10">
+                <input type="date" id="date" />
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @if (ViewBag.Enrollments != null)
+            {
+                IList<Enrollment> enrollments = (IList<Enrollment>)ViewBag.Enrollments;
+
+                <table class="table-condensed table-hover">
+                    <tr>
+                        <th>
+                            Sr. No.
+                        </th>
+                        <th>
+                            Student Name
+                        </th>
+                        <th>
+                            P
+                        </th>
+                        <th>
+                            A
+                        </th>
+                        <th>
+                            L
+                        </th>
+                    </tr>
+
+                    @for (int i = 0; i < enrollments.Count; i++)
+                    {
+                        Enrollment enr = enrollments[i];
+                        Model.Add(new Attendence());
+                        Model[i].EnrollmentID = enr.ID;
+                        @Html.HiddenFor(model => model[i].EnrollmentID)
+                        @Html.HiddenFor(model => model[i].ID)
+                        <tr>
+                            <td>
+                                @(i+1)
+                            </td>
+                            <td>
+                                @enr.Student.FirstName
+                            </td>
+                            <td>
+                                @Html.RadioButtonFor(model => model[i].Status, 'P', new { @checked = true })
+                            </td>
+                            <td>
+                                @Html.RadioButtonFor(model => model[i].Status, 'A')
+                            </td>
+                            <td>
+                                @Html.RadioButtonFor(model => model[i].Status, 'L')
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

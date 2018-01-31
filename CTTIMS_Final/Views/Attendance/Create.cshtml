@@ -1,0 +1,146 @@
+﻿@model IList<CTTIMS_Final.Models.Attendence>
+
+@using CTTIMS_Final.Models
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@{ int count = 0; }
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Attendence</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <div>
+                <label>Select Date</label>
+            </div>
+            <div class="col-md-10">
+                <input type="date" id="date" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Lecture Start Time</label>
+            </div>
+            <div class="col-md-10">
+                <input type="time" id="fromtime" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Lecture End Time</label>
+            </div>
+            <div class="col-md-10">
+                <input type="time" id="totime" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Topics Covered</label>
+            </div>
+            <div class="col-md-10">
+                <textarea id="topics" cols="50" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Class Room</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" id="classroom" />
+            </div>
+        </div>
+        <div class="form-horizontal">
+            @if (ViewBag.Enrollments != null)
+            {
+                IList<Enrollment> enrollments = (IList<Enrollment>)ViewBag.Enrollments;
+
+                <table class="table-condensed table-hover">
+                    <tr>
+                        <th>
+                            Sr. No.
+                        </th>
+                        <th>
+                            Student Name
+                        </th>
+                        <th>
+                            P
+                        </th>
+                        <th>
+                            A
+                        </th>
+                        <th>
+                            L
+                        </th>
+                    </tr>
+                    @{ count = enrollments.Count; }
+                    @for (int i = 0; i < count; i++)
+                    {
+                        Enrollment enr = enrollments[i];
+
+                        @Html.HiddenFor(model => model[i].ID)
+                        @Html.HiddenFor(model => model[i].EnrollmentID)
+                        @Html.HiddenFor(model => model[i].uID)
+                        @Html.HiddenFor(model => model[i].ClassRoom, new { @id = ("classroom" + @i) })
+                        @Html.HiddenFor(model => model[i].EntryDate, new { @id = ("date" + @i) })
+                        @Html.HiddenFor(model => model[i].FromTime, new { @id = ("fromtime" + @i) })
+                        @Html.HiddenFor(model => model[i].ToTime, new { @id = ("totime" + @i) })
+                        @Html.HiddenFor(model => model[i].TopicsCovered, new { @id = ("topics" + @i) })
+                        <tr>
+                            <td>
+                                @(i + 1)
+                            </td>
+                            <td>
+                                @enr.Student.FirstName
+                            </td>
+                            <td>
+                                @Html.RadioButtonFor(model => model[i].Status, 'P', new { @checked = true })
+                            </td>
+                            <td>
+                                @Html.RadioButtonFor(model => model[i].Status, 'A')
+                            </td>
+                            <td>
+                                @Html.RadioButtonFor(model => model[i].Status, 'L')
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" onclick="FillHiddenFields()" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function FillHiddenFields() {
+        for (var i = 0; i < @count ; i++) {
+            // Assign Entry Date
+            document.getElementById("date" + i).value = document.getElementById("date").value;
+            document.getElementById("fromtime" + i).value = document.getElementById("fromtime").value;
+            document.getElementById("totime" + i).value = document.getElementById("totime").value;
+            document.getElementById("topics" + i).value = document.getElementById("topics").value;
+            document.getElementById("classroom" + i).value = document.getElementById("classroom").value;
+        }
+    }
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

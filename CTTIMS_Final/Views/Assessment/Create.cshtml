@@ -26,6 +26,7 @@
                 <label>Select Assessment</label>
             </div>
             <div class="col-md-10">
+                @Html.Hidden("bid", Request.QueryString["bid"]);
                 @Html.DropDownList("type", new SelectList(Enum.GetValues(typeof(AssessmentType))), aType.ToString(),
                                 new { @class = "form-control", @onchange = "this.form.submit();" })
             </div>
@@ -36,62 +37,63 @@
             </div>
             <div class="col-md-10">
                 @{ int? maxMarks = null;
-                 if (aType != null)
-                 {
-                     // Assignments
-                     if (aType == AssessmentType.Assignment1)
-                     {
-                         maxMarks = Model[0].A1_Max;
-                     }
-                     else if (aType == AssessmentType.Assignment2)
-                     {
-                         maxMarks = Model[0].A2_Max;
-                     }
-                     else if (aType == AssessmentType.Assignment3)
-                     {
-                         maxMarks = Model[0].A3_Max;
-                     }
-                     else if (aType == AssessmentType.Assignment4)
-                     {
-                         maxMarks = Model[0].A4_Max;
-                     }
-                     else if (aType == AssessmentType.Assignment5)
-                     {
-                         maxMarks = Model[0].A5_Max;
-                     }
-                     // Quiz
-                     else if (aType == AssessmentType.Quiz1)
-                     {
-                         maxMarks = Model[0].Q1_Max;
-                     }
-                     else if (aType == AssessmentType.Quiz2)
-                     {
-                         maxMarks = Model[0].Q2_Max;
-                     }
-                     else if (aType == AssessmentType.Quiz3)
-                     {
-                         maxMarks = Model[0].Q3_Max;
-                     }
-                     // Mid, Sendup, Final
-                     else if (aType == AssessmentType.MidTerm)
-                     {
-                         maxMarks = Model[0].Mid_Max;
-                     }
-                     else if (aType == AssessmentType.Sendup)
-                     {
-                         maxMarks = Model[0].SendUp_Max;
-                     }
-                     else if (aType == AssessmentType.Final)
-                     {
-                         maxMarks = Model[0].Final_Max;
-                     }
-                 }
+                   if (aType != null)
+                   {
+                       // Assignments
+                       if (aType == AssessmentType.Assignment1)
+                       {
+                           maxMarks = Model[0].A1_Max;
+                       }
+                       else if (aType == AssessmentType.Assignment2)
+                       {
+                           maxMarks = Model[0].A2_Max;
+                       }
+                       else if (aType == AssessmentType.Assignment3)
+                       {
+                           maxMarks = Model[0].A3_Max;
+                       }
+                       else if (aType == AssessmentType.Assignment4)
+                       {
+                           maxMarks = Model[0].A4_Max;
+                       }
+                       else if (aType == AssessmentType.Assignment5)
+                       {
+                           maxMarks = Model[0].A5_Max;
+                       }
+                       // Quiz
+                       else if (aType == AssessmentType.Quiz1)
+                       {
+                           maxMarks = Model[0].Q1_Max;
+                       }
+                       else if (aType == AssessmentType.Quiz2)
+                       {
+                           maxMarks = Model[0].Q2_Max;
+                       }
+                       else if (aType == AssessmentType.Quiz3)
+                       {
+                           maxMarks = Model[0].Q3_Max;
+                       }
+                       // Mid, Sendup, Final
+                       else if (aType == AssessmentType.MidTerm)
+                       {
+                           maxMarks = Model[0].Mid_Max;
+                       }
+                       else if (aType == AssessmentType.Sendup)
+                       {
+                           maxMarks = Model[0].SendUp_Max;
+                       }
+                       else if (aType == AssessmentType.Final)
+                       {
+                           maxMarks = Model[0].Final_Max;
+                       }
+                   }
                 <input type="text" id="max" class="form-control" value="@maxMarks" />
                 }
             </div>
         </div>
     }
 </div>
+
 <div class="form-horizontal">
     @{
         int count = 0;
@@ -100,11 +102,12 @@
     {
         using (Html.BeginForm())
         {
+            @Html.Hidden("bid", Request.QueryString["bid"]);
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             if (Model != null)
             {
-                <table class="table table-condensed table-hover">
+                <table class="table-condensed table-hover">
                     <tr>
                         <th>
                             Sr. No.
@@ -191,7 +194,7 @@
                             @if (aType == AssessmentType.Assignment1)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].A1_Obt)
+                                    @Html.TextBoxFor(model => model[i].A1_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].A1_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].A1_Obt)
                                 </td>
@@ -199,7 +202,7 @@
                             else if (aType == AssessmentType.Assignment2)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].A2_Obt)
+                                    @Html.TextBoxFor(model => model[i].A2_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].A2_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].A2_Obt)
                                 </td>
@@ -207,7 +210,7 @@
                             else if (aType == AssessmentType.Assignment3)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].A3_Obt)
+                                    @Html.TextBoxFor(model => model[i].A3_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].A3_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].A3_Obt)
                                 </td>
@@ -215,7 +218,7 @@
                             else if (aType == AssessmentType.Assignment4)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].A4_Obt)
+                                    @Html.TextBoxFor(model => model[i].A4_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].A4_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].A4_Obt)
                                 </td>
@@ -223,7 +226,7 @@
                             else if (aType == AssessmentType.Assignment5)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].A5_Obt)
+                                    @Html.TextBoxFor(model => model[i].A5_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].A5_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].A5_Obt)
                                 </td>
@@ -231,7 +234,7 @@
                             else if (aType == AssessmentType.Quiz1)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].Q1_Obt)
+                                    @Html.TextBoxFor(model => model[i].Q1_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].Q1_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].Q1_Obt)
                                 </td>
@@ -239,7 +242,7 @@
                             else if (aType == AssessmentType.Quiz2)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].Q2_Obt)
+                                    @Html.TextBoxFor(model => model[i].Q2_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].Q2_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].Q2_Obt)
                                 </td>
@@ -247,7 +250,7 @@
                             else if (aType == AssessmentType.Quiz3)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].Q3_Obt)
+                                    @Html.TextBoxFor(model => model[i].Q3_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].Q3_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].Q3_Obt)
                                 </td>
@@ -255,7 +258,7 @@
                             else if (aType == AssessmentType.MidTerm)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].Mid_Obt)
+                                    @Html.TextBoxFor(model => model[i].Mid_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].Mid_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].Mid_Obt)
                                 </td>
@@ -263,7 +266,7 @@
                             else if (aType == AssessmentType.Sendup)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].SendUp_Obt)
+                                    @Html.TextBoxFor(model => model[i].SendUp_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].SendUp_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].SendUp_Obt)
                                 </td>
@@ -271,7 +274,7 @@
                             else if (aType == AssessmentType.Final)
                             {
                                 <td>
-                                    @Html.TextBoxFor(model => model[i].Final_Obt)
+                                    @Html.TextBoxFor(model => model[i].Final_Obt, new { @style = "width:40px" })
                                     @Html.HiddenFor(model => model[i].Final_Max, new { @id = ("txt" + @i) })
                                     @Html.ValidationMessageFor(model => model[i].Final_Obt)
                                 </td>
@@ -283,7 +286,7 @@
             if (Model != null)
             {
                 <div class="form-group">
-                    <div class="col-md-offset-6 col-md-10">
+                    <div class="col-md-offset-0">
                         <input type="submit" value="Save" class="btn btn-success" onclick="AssignMaxMarks()" />
                     </div>
                 </div>
