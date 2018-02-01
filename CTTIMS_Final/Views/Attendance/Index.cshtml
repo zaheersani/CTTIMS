@@ -6,92 +6,69 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ClassRoom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EntryDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FromTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ToTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TopicsCovered)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Enrollment.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Instructor.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<div class="form-horizontal">
+    @using (Html.BeginForm("Index", "Attendance", FormMethod.Get))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClassRoom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EntryDate)
-            </td>
-            <td>
-                @if (item.FromTime != null)
+        var query = Request.QueryString["date"];
+        // Convert query string value back to Enumerator
+        if (query != null)
+        {
+            //aType = (AssessmentType)System.Enum.Parse(typeof(AssessmentType), query);
+        }
+        <div class="form-group">
+            <div>
+                <label>Select Assessment</label>
+            </div>
+            <div class="col-md-10">
+                @*@Html.Hidden("bid", Request.QueryString["bid"]);*@
+                @if (ViewBag.EntryDates != null)
                 {
-                    @Html.DisplayFor(modelItem => item.FromTime.Value.TimeOfDay)
+                    IEnumerable<SelectListItem> list = (IEnumerable<SelectListItem>)ViewBag.EntryDates;
+                    TempData["list"] = list;
+
+                    @Html.DropDownList("date", list, "--Select Date--",
+                                new { @class = "form-control", @onchange = "this.form.submit();" })
                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ToTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TopicsCovered)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Enrollment.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Instructor.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+                else
+                {
+                    <h4 class="text-danger">No Attendance entry found for this course!</h4>
+                    return;
+                }
+            </div>
+        </div>
     }
 
-</table>
+    @if (Model != null)
+    {
+        <table class="table-hover table-condensed">
+            <tr>
+                <th>
+                    Sr. No.
+                </th>
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+            @{ int count = 0;
+             foreach (var item in Model)
+             {
+                <tr>
+                    <td>
+                        @{ count++; }
+                        @count
+                    </td>
+                    <td>
+                        @item.Enrollment.Student.FirstName&nbsp;@item.Enrollment.Student.LastName
+                    </td>
+                    <td style="text-align:center">
+                        @item.Status
+                    </td>
+                </tr>
+             }
+            }
+        </table>
+    }
+</div>

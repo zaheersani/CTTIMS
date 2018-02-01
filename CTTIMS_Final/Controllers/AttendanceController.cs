@@ -31,22 +31,59 @@ namespace CTTIMS_Final.Controllers
             {
                 // Get enrollments for filtered batch, section and course
                 var enr = db.Enrollments.Where(x => x.InstructorCoursesID == instCourse.ID);
-
+                var enrs = db.Attendences.Where(x => enr.Any(eid => eid.ID == x.EnrollmentID));
                 //if (enr.Count() > 0)
                 //{
                 //    assessments = db.Assessments.Where(x => enr.Any(eid => eid.ID == x.EnrollmentID));
                 //    return assessments.ToList();
                 //}
-                return enr.ToList();
+                return enr;//.ToList();
             }
             return null;
         }
 
         // GET: /Attendance/
-        public ActionResult Index()
+        public ActionResult Index(string date)
         {
-            var attendences = db.Attendences.Include(a => a.Enrollment).Include(a => a.Instructor).Include(a => a.User);
-            return View(attendences.ToList());
+            // For the first time when page is loaded
+            if (date == null)
+            {
+                // Get enrollments of this course
+                IEnumerable<Enrollment> enrollments = this.GetEnrollments();
+                // Get distinct dates of this class
+                if (enrollments != null)
+                {
+                    var enrVar = from e in enrollments select e;
+                    IEnumerable<DateTime?> enrs = db.Attendences
+                                 .Where(x => enrollments.Any(eid => eid.ID == x.EnrollmentID)
+                                        && x.EntryDate != null)
+                                 .Select(s => s.EntryDate).Distinct();
+
+                    List<SelectListItem> ObjList = new List<SelectListItem>();
+                    foreach (var item in enrs)
+                    {
+                        ObjList.Add(new SelectListItem { Text = item.Value.Date.ToString("d MMM yyyy"), Value = item.Value.ToString() });
+                    }
+
+                    ViewBag.EntryDates = ObjList;
+                }
+            }
+            else if (date != null) // When user selected a date then filter the results and return
+            {
+                ViewBag.EntryDates = (List<SelectListItem>)TempData["list"];
+                DateTime dateObj;
+                if (DateTime.TryParse(date, out dateObj))
+                {
+                    var attendences = db.Attendences
+                                        .Include(a => a.Enrollment)
+                                        .Include(a => a.Instructor)
+                                        .Include(a => a.User)
+                                        .Where(a => a.EntryDate == dateObj);
+                    return View(attendences.ToList());
+                }
+            }
+            
+            return View();
         }
 
         // GET: /Attendance/Details/5
@@ -125,7 +162,7 @@ namespace CTTIMS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,EnrollmentID,uID,ClassRoom,Status,EntryDate,FromTime,ToTime,ModifiedOn,CreatedOn,TopicsCovered")] Attendence attendence)
+        public ActionResult Edit([Bind(Include = "ID,EnrollmentID,uID,ClassRoom,Status,EntryDate,FromTime,ToTime,ModifiedOn,CreatedOn,TopicsCovered")] Attendence attendence)
         {
             if (ModelState.IsValid)
             {
